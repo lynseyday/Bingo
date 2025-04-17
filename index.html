@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bingo Card Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <!-- Title -->
+  <h1 class="page-title">May Mental Health Bingo Card Tracker</h1>
+
+  <!-- Two-Column Layout -->
+  <div class="two-column-container">
+    <!-- Left Column: Name Input and Instructions -->
+    <div class="instructions">
+      <!-- Name Input Section -->
+<div class="name-input-container">
+  <label for="user-info">
+    Enter Your Name <span class="required-asterisk">*</span>
+  </label>
+  <input type="text" id="user-info" placeholder="Type your name here..." />
+</div>
+
+      <!-- Instructions Section -->
+      <p>Follow these steps to complete your Bingo Card:</p>
+      <ol>
+        <li>Click on a square to mark it as completed.</li>
+        <li>When you get a bingo (a full row, column, or diagonal is completed), click the <strong>"Check for Bingo"</strong> button.</li>
+        <li>A PDF will be generated and automatically downloaded to your computer.</li>
+        <li>An email draft will open. Please attach the generated PDF to the email.</li>
+        <li>Hit send to submit your bingo card!</li>
+      </ol>
+    </div>
+
+    <!-- Right Column: Bingo Card -->
+<div id="bingo-card-container">
+  <div id="bingo-card">
+    <!-- Bingo squares will be dynamically generated here -->
+  </div>
+<div id="button-container">
+  <button id="submit-button">Check for Bingo</button>
+  <button id="reset-button">Reset Board</button>
+</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

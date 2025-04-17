@@ -1,0 +1,197 @@
+/* General Page Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  color: #333;
+}
+
+/* Title Styling */
+.page-title {
+  text-align: center;
+  font-size: 24px; /* Smaller font size for mobile */
+  margin-bottom: 20px;
+}
+
+/* Two-Column Layout */
+.two-column-container {
+  display: flex;
+  flex-direction: column; /* Stack columns vertically on mobile */
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Left Column: Instructions */
+.instructions {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
+
+/* List Styling */
+.instructions ol {
+  margin: 10px 0 20px 20px;
+  padding: 0;
+  list-style-type: decimal;
+}
+
+.instructions li {
+  font-size: 14px; /* Smaller font size for mobile */
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.instructions p {
+  font-size: 16px; /* Smaller font size for mobile */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Name Input Container */
+.name-input-container {
+  margin-bottom: 20px;
+}
+
+.name-input-container label {
+  font-size: 16px; /* Smaller font size for mobile */
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.name-input-container input {
+  width: 92%; /* Full width on mobile */
+  padding: 10px;
+  font-size: 14px; /* Smaller font size for mobile */
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.name-input-container input:hover {
+  border-color: #007bff;
+  box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.name-input-container input:focus {
+  border-color: #007bff;
+  box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.4);
+}
+
+/* Right Column: Bingo Card */
+#bingo-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bingo-card {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns for desktop */
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.bingo-square {
+  width: 80px; /* Smaller squares for mobile */
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  font-size: 12px; /* Smaller font size for mobile */
+  text-align: center;
+  padding: 5px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.bingo-square:hover {
+  background-color: #ffeb3b;
+  border-color: #fbc02d;
+  transform: scale(1.1);
+}
+
+/* Button Container Styling */
+#button-container {
+  display: flex; /* Use Flexbox to align items in a row */
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 10px; /* Add space between the buttons */
+  margin-top: 20px; /* Add some space above the buttons */
+}
+
+/* Button Styling */
+#button-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#button-container button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Media Queries for Larger Screens */
+@media (min-width: 768px) {
+  .page-title {
+    font-size: 32px; /* Larger font size for tablets and desktops */
+  }
+
+  .two-column-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Two columns for larger screens */
+    gap: 20px;
+    max-width: 1000px;
+  }
+
+  .instructions li {
+    font-size: 16px; /* Larger font size for tablets and desktops */
+  }
+
+  .instructions p {
+    font-size: 18px; /* Larger font size for tablets and desktops */
+  }
+
+  .name-input-container input {
+    width: 250px; /* Wider input field for larger screens */
+    font-size: 16px;
+  }
+
+  #bingo-card {
+    grid-template-columns: repeat(5, 1fr); /* Maintain 5 columns */
+  }
+
+  .bingo-square {
+    width: 130px; /* Larger squares for tablets and desktops */
+    height: 120px;
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 16px; /* Larger button size for tablets and desktops */
+  }
+}
+
+/* Selected/Marked Bingo Square */
+.bingo-square.marked {
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text */
+  border-color: #388e3c; /* Darker green border */
+}
+
+/* Style for the required asterisk */
+.required-asterisk {
+  color: red;
+  font-size: 16px; /* Adjust size to match the label text */
+  margin-left: 5px; /* Add some space between the label and the asterisk */
+}
