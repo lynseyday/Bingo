@@ -1,8 +1,8 @@
 // Define the bingo card data (5x5 grid with your 25 tasks)
 const bingoData = [
-  ["Create or modify a morning routine", "Try a new recipe, start a DIY, enjoy a craft", "Stretch for 10 minutes", "Write down who you need to forgive", "Ask for help"],
+  ["Create or modify a morning routine", "Do something creative – try a new recipe, start a DIY, enjoy a craft", "Stretch for 10 minutes", "Write down who you need to forgive", "Ask for help"],
   ["Spend time in nature", "Laugh", "Engage in something that brings you joy", "Try something new", "Declutter a room or space"],
-  ["Donate something you don’t use", "Unplug from technology 1 hour before bed", "Write down 10 things you are grateful for", "Say 5 positive affirmations to yourself", "Complete a puzzle or brain game"],
+  ["Donate something you don’t use", "Unplug from technology 1 hour before bed", "Practice gratitude – write down 10 things you are grateful for", "Say 5 positive affirmations to yourself", "Complete a puzzle or brain game"],
   ["Set a personal goal and plan steps to achieve it", "Spend time with someone who makes you laugh", "Meditate for 10 minutes", "Curl up with a good book", "Have a dance party"],
   ["Enjoy an afternoon or evening out with friends or loved ones", "Talk through or journal your emotions", "Listen to your favorite song", "Watch your favorite movie or tv show", "Exercise for 30 minutes"]
 ];
@@ -104,29 +104,38 @@ document.getElementById("submit-button").addEventListener("click", () => {
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF();
 
-      // Add user's name at the top of the PDF
-      pdf.setFontSize(16);
-      pdf.text(`Bingo Card Submitted By: ${userInfo}`, 10, 10);
+      // Add the logo to the top-left of the PDF
+      const logo = new Image();
+      logo.src = "aornlogo.png"; 
+      logo.onload = () => {
+        pdf.addImage(logo, "PNG", 10, 10, 30, 30); // Adjust dimensions (x, y, width, height)
 
-      // Add the bingo card image to the PDF
-      pdf.addImage(imageData, "PNG", 10, 20, 180, 160); // Adjust dimensions as needed
-      pdf.save("bingo-card.pdf"); // Automatically downloads the PDF
+        // Add the title below the logo
+        pdf.setFontSize(18);
+        pdf.text("Mental Health Bingo Card", 105, 25, { align: "center" }); // Centered title
 
-      // Open an email draft
-      const recipient = "lday@aorn.org";
-      const subject = encodeURIComponent("Bingo!");
-      const body = encodeURIComponent(
-        `I just got a bingo! I've attached a copy of my recent bingo card showing the bingo.\n\nSubmitted by: ${userInfo}`
-      );
-      window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+        // Add the bingo card image to the PDF
+        pdf.addImage(imageData, "PNG", 10, 40, 180, 160); // Adjust dimensions as needed
+        pdf.save("bingo-card.pdf"); // Automatically downloads the PDF
+
+        // Open an email draft
+        const recipient = "lday@aorn.org";
+        const subject = encodeURIComponent("Bingo!");
+        const body = encodeURIComponent(
+          `I just got a bingo! I've attached a copy of my recent bingo card showing the bingo.\n\nSubmitted by: ${userInfo}`
+        );
+        window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+      };
+
+      // Handle logo loading errors
+      logo.onerror = () => {
+        alert("Error loading the logo. Please check the logo path.");
+      };
     });
   } else {
     alert("No bingo yet. Keep going!");
   }
 });
-
-// Initialize the bingo card on page load
-initializeBingoCard();
 
 // Add event listener to the "Reset Board" button
 document.getElementById("reset-button").addEventListener("click", () => {
@@ -140,3 +149,6 @@ document.getElementById("reset-button").addEventListener("click", () => {
   // Alert the user that the board has been reset
   alert("The bingo board has been reset!");
 });
+
+// Initialize the bingo card on page load
+initializeBingoCard();

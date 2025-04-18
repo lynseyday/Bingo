@@ -24,7 +24,7 @@ body {
 /* Left Column: Instructions */
 .instructions {
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #f5f5f5;
   border: 2px solid #ccc;
   border-radius: 10px;
 }
@@ -71,12 +71,12 @@ body {
 }
 
 .name-input-container input:hover {
-  border-color: #007bff;
+  border-color: #007a87;
   box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.2);
 }
 
 .name-input-container input:focus {
-  border-color: #007bff;
+  border-color: #007a87;
   box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.4);
 }
 
@@ -100,7 +100,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f0f0f0;
+  background-color: #f5f5f5;
   border: 2px solid #ccc;
   cursor: pointer;
   font-size: 12px; /* Smaller font size for mobile */
@@ -111,9 +111,10 @@ body {
 }
 
 .bingo-square:hover {
-  background-color: #ffeb3b;
-  border-color: #fbc02d;
+  background-color: #e6f6f7;
+  border-color: #005d64;
   transform: scale(1.1);
+
 }
 
 /* Button Container Styling */
@@ -128,16 +129,18 @@ body {
 #button-container button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: #007a87;
   color: white;
-  border: none;
+  border: 1px solid #007a87;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 #button-container button:hover {
-  background-color: #0056b3;
+  background-color: #e6f6f7;
+  color: #000000;
+  border: 1px solid #005d64;
 }
 
 
@@ -184,9 +187,9 @@ body {
 
 /* Selected/Marked Bingo Square */
 .bingo-square.marked {
-  background-color: #4caf50; /* Green background */
-  color: white; /* White text */
-  border-color: #388e3c; /* Darker green border */
+  background-color: #007a87; 
+  color: white; 
+  border-color: #005d64; 
 }
 
 /* Style for the required asterisk */
@@ -195,3 +198,17 @@ body {
   font-size: 16px; /* Adjust size to match the label text */
   margin-left: 5px; /* Add some space between the label and the asterisk */
 }
+
+/* Logo Container */
+#logo-container {
+  position: absolute; /* Position it at the top-left */
+  top: 10px;
+  left: 10px;
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+#logo {
+  width: 200px; /* Adjust the size of the logo */
+  height: auto; /* Maintain aspect ratio */
+}
+
