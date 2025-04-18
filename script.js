@@ -53,6 +53,45 @@ function initializeBingoCard() {
   });
 }
 
+// Save the name to localStorage when the user types in the input box
+const userInfoInput = document.getElementById("user-info");
+userInfoInput.addEventListener("input", () => {
+  localStorage.setItem("userName", userInfoInput.value.trim());
+});
+
+// Load the name from localStorage when the page loads
+window.addEventListener("load", () => {
+  const savedName = localStorage.getItem("userName");
+  if (savedName) {
+    userInfoInput.value = savedName; // Populate the input box with the saved name
+  }
+});
+
+// Function to show the custom alert
+function showCustomAlert(message) {
+  const modal = document.getElementById("custom-alert");
+  const messageElement = document.getElementById("alert-message");
+  const closeButton = document.getElementById("close-alert");
+
+  // Set the message
+  messageElement.textContent = message;
+
+  // Show the modal
+  modal.style.display = "block";
+
+  // Close the modal when the close button is clicked
+  closeButton.onclick = () => {
+    modal.style.display = "none";
+  };
+
+  // Close the modal when clicking outside the modal content
+  window.onclick = (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+}
+
 // Function to check for bingo
 function checkBingo(markedSquares) {
   const size = 5; // 5x5 grid
@@ -75,12 +114,11 @@ function checkBingo(markedSquares) {
 
 // Add event listener to the "Check for Bingo" button
 document.getElementById("submit-button").addEventListener("click", () => {
-  const userInfoInput = document.getElementById("user-info"); // Get the name input field
   const userInfo = userInfoInput.value.trim(); // Get the value and trim whitespace
 
   // Validate the name input
   if (!userInfo) {
-    alert("Please enter your name before checking for bingo!");
+    showCustomAlert("Please enter your name before checking for bingo!");
     userInfoInput.focus(); // Highlight the input field
     return; // Stop further execution
   }
@@ -92,7 +130,7 @@ document.getElementById("submit-button").addEventListener("click", () => {
   // Check for bingo
   const bingo = checkBingo(markedSquares);
   if (bingo) {
-    alert("Bingo achieved! Generating a PDF. Please attach the PDF to the email that will open.");
+    showCustomAlert("Bingo achieved! Generating a PDF. Don't forget to attach the PDF to the email that will open!");
 
     // Capture the bingo card as an image using html2canvas
     const bingoCardElement = document.getElementById("bingo-card");
@@ -121,32 +159,10 @@ document.getElementById("submit-button").addEventListener("click", () => {
         // Add the bingo card image to the PDF
         pdf.addImage(imageData, "PNG", 10, 50, 180, 160); // Adjust dimensions as needed
         pdf.save("bingo-card.pdf"); // Automatically downloads the PDF
-
-        // Open an email draft
-        const recipient = "lday@aorn.org";
-        const subject = encodeURIComponent("Bingo!");
-        const body = encodeURIComponent(
-          `I just got a bingo! I've attached a copy of my recent bingo card showing the bingo.\n\nSubmitted by: ${userInfo}`
-        );
-        window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
       };
-
-      // Handle logo loading errors
-      logo.onerror = () => {
-        alert("Error loading the logo. Please check the logo path.");
-        pdf.setFontSize(18);
-        pdf.text("Mental Health Bingo Card", 105, 25, { align: "center" }); // Centered title
-        pdf.setFontSize(12);
-        pdf.text(`Submitted by: ${userInfo}`, 105, 35, { align: "center" }); // Centered below the title
-        pdf.addImage(imageData, "PNG", 10, 50, 180, 160); // Add the bingo card image
-        pdf.save("bingo-card.pdf"); // Save the PDF even without the logo
-      };
-    }).catch(err => {
-      console.error("Error generating PDF:", err);
-      alert("An error occurred while generating the PDF. Please try again.");
     });
   } else {
-    alert("No bingo yet, but don't worry your progress will be saved. Keep going!");
+    showCustomAlert("No bingo yet, but don't worry your progress has been saved. Keep going!");
   }
 });
 
@@ -160,22 +176,8 @@ document.getElementById("reset-button").addEventListener("click", () => {
   localStorage.removeItem("bingoProgress");
 
   // Alert the user that the board has been reset
-  alert("The bingo board has been reset!");
+  showCustomAlert("The bingo board has been reset!");
 });
 
 // Initialize the bingo card on page load
 initializeBingoCard();
-
-// Save the name to localStorage when the user types in the input box
-const userInfoInput = document.getElementById("user-info");
-userInfoInput.addEventListener("input", () => {
-  localStorage.setItem("userName", userInfoInput.value.trim());
-});
-
-// Load the name from localStorage when the page loads
-window.addEventListener("load", () => {
-  const savedName = localStorage.getItem("userName");
-  if (savedName) {
-    userInfoInput.value = savedName; // Populate the input box with the saved name
-  }
-});
