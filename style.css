@@ -92,6 +92,7 @@ body {
   grid-template-columns: repeat(5, 1fr); /* 5 columns for desktop */
   gap: 10px;
   margin-bottom: 20px;
+  padding: 10px;
 }
 
 .bingo-square {
@@ -108,6 +109,29 @@ body {
   padding: 5px;
   box-sizing: border-box;
   transition: all 0.3s ease;
+}
+
+/* Adjustments for smaller screens (tablets and phones) */
+@media (max-width: 768px) {
+  #bingo-card {
+    max-width: 100%; /* Allow the card to take up the full width of the screen */
+    padding: 5px; /* Reduce padding for smaller screens */
+  }
+
+  .bingo-square {
+    font-size: 0.8rem; /* Reduce font size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  #bingo-card {
+    max-width: 100%; /* Full width for very small screens */
+    padding: 5px; /* Reduce padding further */
+  }
+
+  .bingo-square {
+    font-size: 0.6rem; /* Further reduce font size for very small screens */
+  }
 }
 
 .bingo-square:hover {
