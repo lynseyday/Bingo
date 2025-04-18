@@ -106,7 +106,7 @@ document.getElementById("submit-button").addEventListener("click", () => {
 
       // Add the logo to the top-left of the PDF
       const logo = new Image();
-      logo.src = "aornlogo.png"; 
+      logo.src = "aornlogo.png"; // Replace with the path to your logo file
       logo.onload = () => {
         pdf.addImage(logo, "PNG", 10, 10, 30, 30); // Adjust dimensions (x, y, width, height)
 
@@ -114,8 +114,12 @@ document.getElementById("submit-button").addEventListener("click", () => {
         pdf.setFontSize(18);
         pdf.text("Mental Health Bingo Card", 105, 25, { align: "center" }); // Centered title
 
+        // Add "Submitted by:" and the user's name below the title
+        pdf.setFontSize(12); // Smaller font for the submitted name
+        pdf.text(`Submitted by: ${userInfo}`, 105, 35, { align: "center" }); // Centered below the title
+
         // Add the bingo card image to the PDF
-        pdf.addImage(imageData, "PNG", 10, 40, 180, 160); // Adjust dimensions as needed
+        pdf.addImage(imageData, "PNG", 10, 50, 180, 160); // Adjust dimensions as needed
         pdf.save("bingo-card.pdf"); // Automatically downloads the PDF
 
         // Open an email draft
@@ -130,7 +134,16 @@ document.getElementById("submit-button").addEventListener("click", () => {
       // Handle logo loading errors
       logo.onerror = () => {
         alert("Error loading the logo. Please check the logo path.");
+        pdf.setFontSize(18);
+        pdf.text("Mental Health Bingo Card", 105, 25, { align: "center" }); // Centered title
+        pdf.setFontSize(12);
+        pdf.text(`Submitted by: ${userInfo}`, 105, 35, { align: "center" }); // Centered below the title
+        pdf.addImage(imageData, "PNG", 10, 50, 180, 160); // Add the bingo card image
+        pdf.save("bingo-card.pdf"); // Save the PDF even without the logo
       };
+    }).catch(err => {
+      console.error("Error generating PDF:", err);
+      alert("An error occurred while generating the PDF. Please try again.");
     });
   } else {
     alert("No bingo yet. Keep going!");
