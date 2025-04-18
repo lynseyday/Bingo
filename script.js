@@ -92,7 +92,7 @@ document.getElementById("submit-button").addEventListener("click", () => {
   // Check for bingo
   const bingo = checkBingo(markedSquares);
   if (bingo) {
-    alert("Bingo achieved! Generating a PDF...");
+    alert("Bingo achieved! Generating a PDF. Please attach the PDF to the email that will open.");
 
     // Capture the bingo card as an image using html2canvas
     const bingoCardElement = document.getElementById("bingo-card");
@@ -108,7 +108,7 @@ document.getElementById("submit-button").addEventListener("click", () => {
       const logo = new Image();
       logo.src = "aornlogo.png"; // Replace with the path to your logo file
       logo.onload = () => {
-        pdf.addImage(logo, "PNG", 10, 10, 30, 30); // Adjust dimensions (x, y, width, height)
+        pdf.addImage(logo, "PNG", 10, 10, 30, 10); // Adjust dimensions (x, y, width, height)
 
         // Add the title below the logo
         pdf.setFontSize(18);
@@ -146,7 +146,7 @@ document.getElementById("submit-button").addEventListener("click", () => {
       alert("An error occurred while generating the PDF. Please try again.");
     });
   } else {
-    alert("No bingo yet. Keep going!");
+    alert("No bingo yet, but don't worry your progress will be saved. Keep going!");
   }
 });
 
@@ -165,3 +165,17 @@ document.getElementById("reset-button").addEventListener("click", () => {
 
 // Initialize the bingo card on page load
 initializeBingoCard();
+
+// Save the name to localStorage when the user types in the input box
+const userInfoInput = document.getElementById("user-info");
+userInfoInput.addEventListener("input", () => {
+  localStorage.setItem("userName", userInfoInput.value.trim());
+});
+
+// Load the name from localStorage when the page loads
+window.addEventListener("load", () => {
+  const savedName = localStorage.getItem("userName");
+  if (savedName) {
+    userInfoInput.value = savedName; // Populate the input box with the saved name
+  }
+});
