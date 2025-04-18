@@ -190,3 +190,5 @@ document.getElementById("reset-button").addEventListener("click", () => {
 
 // Initialize the bingo card on page load
 initializeBingoCard();
+
+

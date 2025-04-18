@@ -282,3 +282,31 @@ body {
   }
 }
 
+/* Center the bingo container and set a max width */
+#bingo-container {
+  max-width: 1020px; /* Adjust this to match the width of your instructions and bingo card */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px;
+}
+
+/* Style the header */
+#bingo-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Style the motivational message */
+#motivational-message {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 10px;
+  line-height: 1.5;
+  text-align: center; /* Center the text within the container */
+}
+
+
+@media (max-width: 768px) {
+  #motivational-message {
+    font-size: 0.9rem;
+  }
+}
