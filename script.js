@@ -159,6 +159,15 @@ document.getElementById("submit-button").addEventListener("click", () => {
         // Add the bingo card image to the PDF
         pdf.addImage(imageData, "PNG", 10, 50, 180, 160); // Adjust dimensions as needed
         pdf.save("bingo-card.pdf"); // Automatically downloads the PDF
+
+// Open an email draft
+const recipient = "kgibson@aorn.org";
+const subject = encodeURIComponent("Bingo!");
+const body = encodeURIComponent(
+  `I just got a bingo! I've attached a copy of my recent bingo card.\n\nSubmitted by: ${userInfo}`
+);
+window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+
       };
     });
   } else {
