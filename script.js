@@ -1,10 +1,10 @@
 // Define the bingo card data (5x5 grid with your 25 tasks)
 const bingoData = [
-  ["Create or modify a morning routine", "Do something creative – try a new recipe, start a DIY, enjoy a craft", "Stretch for 10 minutes", "Write down who you need to forgive", "Ask for help"],
-  ["Spend time in nature", "Laugh", "Engage in something that brings you joy", "Try something new", "Declutter a room or space"],
+  ["Create or modify a morning routine", "Do something creative – try a new recipe, start a DIY, enjoy a craft", "Stretch for 10 minutes", "Say 'no' to something that drains your energy", "Ask for help"],
+  ["Spend time in nature", "Talk a short walk", "Engage in something that brings you joy", "Do a random act of kindness", "Declutter a room or space"],
   ["Donate something you don’t use", "Unplug from technology 1 hour before bed", "Practice gratitude – write down 10 things you are grateful for", "Say 5 positive affirmations to yourself", "Complete a puzzle or brain game"],
   ["Set a personal goal and plan steps to achieve it", "Spend time with someone who makes you laugh", "Meditate for 10 minutes", "Curl up with a good book", "Have a dance party"],
-  ["Enjoy an afternoon or evening out with friends or loved ones", "Talk through or journal your emotions", "Listen to your favorite song", "Watch your favorite movie or tv show", "Exercise for 30 minutes"]
+  ["Enjoy an afternoon or evening out with friends or loved ones", "Talk through or journal your emotions", "Listen to your favorite song", "Celebrate a small personal win or progress", "Exercise for 30 minutes"]
 ];
 
 // Generate the bingo card
@@ -150,7 +150,7 @@ document.getElementById("submit-button").addEventListener("click", () => {
 
         // Add the title below the logo
         pdf.setFontSize(18);
-        pdf.text("Mental Health Bingo Card", 105, 25, { align: "center" }); // Centered title
+        pdf.text("Self-Care Bingo Card", 105, 25, { align: "center" }); // Centered title
 
         // Add "Submitted by:" and the user's name below the title
         pdf.setFontSize(12); // Smaller font for the submitted name

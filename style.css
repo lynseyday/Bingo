@@ -334,3 +334,15 @@ body {
     font-size: 0.9rem;
   }
 }
+
+a:link {
+  color: #007a87;
+}
+
+a:visited {
+  color: #007a87;
+}
+
+a:hover {
+  color: #000000;
+}
